@@ -38,7 +38,7 @@ app.get('/todos', (req, res) => {
 // Route to get a todo by ID
 app.get('/todos/:id', (req, res) => {
     const id = req.params.id;
-    const todo = todos.find(todo => todo.id === id);
+    const todo = todos.find(todo => todo.id === parseInt(id));
     if (!todo) {
         return res.status(404).json({ message: 'Todo not found' });
     }
@@ -67,7 +67,7 @@ app.post('/todos', (req, res, next) => {
 // Route to update todo by ID
 app.put('/todos/:id', (req, res, next) => {
     const id = req.params.id;
-    const todo = todos.find(todo => todo.id === id);
+    const todo = todos.find(todo => todo.id === parseInt(id));
     if (!todo) {
         return res.status(404).json({ message: 'Todo not found' });
     }
@@ -86,7 +86,7 @@ app.put('/todos/:id', (req, res, next) => {
 // Route to delete a todo by ID
 app.delete('/todos/:id', (req, res, next) => {
     const id = req.params.id;
-    const todoIndex = todos.findIndex(todo => todo.id === id);
+    const todo = todos.find(todo => todo.id === parseInt(id));
     if (todoIndex === -1) {
         return res.status(404).json({ message: 'Todo not found' });
     }
